@@ -1,0 +1,31 @@
+type = "card"
+title = "Projects"
+description = "Selected research, engineering, and science-communication projects."
+
+[[items]]
+title = "Mixed-Precision PTQ for SAM2"
+subtitle = "First Author · IJCAI-ECAI 2026 GLOW Workshop Oral"
+date = "2025–2026"
+content = "Identified non-uniform quantization sensitivity in SAM2 and developed **GLS-MPQ** with **M-KVM** to improve the accuracy-efficiency trade-off in promptable video segmentation. [Read the paper](/papers/layer-sensitivity-matters.pdf)."
+tags = ["Efficient AI", "Quantization", "Video Segmentation"]
+
+[[items]]
+title = "StarOps"
+subtitle = "National Champion · Challenge Cup"
+date = "2025"
+content = "Built an intelligent system-operations agent for monitoring, anomaly detection, dependency-chain analysis, automated optimization, and system-oriented question answering."
+tags = ["Agents", "LLM", "Anomaly Detection"]
+
+[[items]]
+title = "JARA"
+subtitle = "National Innovation and Entrepreneurship Training Program"
+date = "2025–2026"
+content = "Developed a vision-language pretraining framework through visual context reconstruction, asymmetric context-text alignment, and spatially balanced masking."
+tags = ["Multimodal Learning", "Vision-Language Pretraining"]
+
+[[items]]
+title = "DailyQuant"
+subtitle = "AI Research Communication"
+date = "Ongoing"
+content = "Explain recent AI papers and publish structured reading notes for the broader Chinese AI community, with sustained coverage of efficient and multimodal AI research."
+tags = ["Research Communication", "Paper Reading"]

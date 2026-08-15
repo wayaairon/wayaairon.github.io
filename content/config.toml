@@ -1,0 +1,63 @@
+[site]
+title = "Wenyu Zhou"
+description = "Academic homepage of Wenyu Zhou — efficient AI, multimodal learning, and embodied intelligence."
+favicon = "/favicon.svg"
+last_updated = "August 15, 2026"
+
+[author]
+name = "Wenyu Zhou"
+title = "Undergraduate Researcher"
+institution = "Beihang University"
+avatar = "/dailyquant-screenshot.png"
+
+[social]
+email = "wayaairon@gmail.com"
+location = "Beijing, China"
+github = "https://github.com/wayaairon"
+
+[features]
+enable_likes = false
+enable_one_page_mode = false
+
+[i18n]
+enabled = true
+locales = ["en", "zh"]
+default_locale = "en"
+mode = "auto"
+fixed_locale = "en"
+persist = true
+switcher = true
+
+[i18n.labels]
+en = "English"
+zh = "中文"
+
+[[navigation]]
+title = "About"
+type = "page"
+target = "about"
+href = "/"
+
+[[navigation]]
+title = "Publications"
+type = "page"
+target = "publications"
+href = "/publications"
+
+[[navigation]]
+title = "Projects"
+type = "page"
+target = "projects"
+href = "/projects"
+
+[[navigation]]
+title = "Awards"
+type = "page"
+target = "awards"
+href = "/awards"
+
+[[navigation]]
+title = "CV"
+type = "page"
+target = "cv"
+href = "/cv"

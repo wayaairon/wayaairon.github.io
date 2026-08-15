@@ -1,0 +1,39 @@
+type = "card"
+title = "Awards"
+description = "Selected honors and awards."
+
+[[items]]
+title = "First-Author Oral Presentation"
+subtitle = "IJCAI-ECAI GLOW Workshop"
+date = "2026"
+content = "First-author paper accepted as an Oral Presentation."
+
+[[items]]
+title = "Honorable Mention"
+subtitle = "Mathematical Contest in Modeling"
+date = "2026"
+content = "Honorable Mention in the international Mathematical Contest in Modeling."
+
+[[items]]
+title = "National Champion"
+subtitle = "Challenge Cup Competition"
+date = "2025"
+content = "National championship for the StarOps intelligent system-operations agent."
+
+[[items]]
+title = "National Encouragement Scholarship"
+subtitle = "Ministry of Education, China"
+date = "2025"
+content = "Awarded for academic performance and comprehensive excellence."
+
+[[items]]
+title = "Second Prize"
+subtitle = "Chinese Mathematics Competitions for College Students"
+date = "2025"
+content = "Second Prize in the 16th national competition."
+
+[[items]]
+title = "Second Prize · Beijing Division"
+subtitle = "Contemporary Undergraduate Mathematical Contest in Modeling"
+date = "2025"
+content = "Second Prize in the Beijing regional division."

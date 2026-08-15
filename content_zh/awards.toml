@@ -1,0 +1,39 @@
+type = "card"
+title = "荣誉"
+description = "代表性荣誉与奖项。"
+
+[[items]]
+title = "第一作者 Oral Presentation"
+subtitle = "IJCAI-ECAI GLOW Workshop"
+date = "2026"
+content = "第一作者论文被录用为 Oral Presentation。"
+
+[[items]]
+title = "Honorable Mention"
+subtitle = "美国大学生数学建模竞赛"
+date = "2026"
+content = "Mathematical Contest in Modeling Honorable Mention。"
+
+[[items]]
+title = "全国冠军"
+subtitle = "挑战杯竞赛"
+date = "2025"
+content = "StarOps 智能运维 Agent 项目获全国冠军。"
+
+[[items]]
+title = "国家励志奖学金"
+subtitle = "教育部"
+date = "2025"
+content = "因学业表现与综合素质获奖。"
+
+[[items]]
+title = "二等奖"
+subtitle = "全国大学生数学竞赛"
+date = "2025"
+content = "第十六届全国大学生数学竞赛二等奖。"
+
+[[items]]
+title = "北京市二等奖"
+subtitle = "全国大学生数学建模竞赛"
+date = "2025"
+content = "全国大学生数学建模竞赛北京赛区二等奖。"
