@@ -6,7 +6,7 @@ description = "代表性科研、工程与科普项目。"
 title = "面向 SAM2 的混合精度后训练量化"
 subtitle = "第一作者 · IJCAI-ECAI 2026 GLOW Workshop Oral"
 date = "2025–2026"
-content = "发现 SAM2 量化敏感性的高度不均匀性，提出 **GLS-MPQ** 与 **M-KVM**，改善可提示视频分割中的精度与效率权衡。[阅读论文](/papers/layer-sensitivity-matters.pdf)。"
+content = "发现 SAM2 量化敏感性的高度不均匀性，提出 **GLS-MPQ** 与 **M-KVM**，改善可提示视频分割中的精度与效率权衡。"
 tags = ["高效人工智能", "模型量化", "视频分割"]
 
 [[items]]

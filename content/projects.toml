@@ -6,7 +6,7 @@ description = "Selected research, engineering, and science-communication project
 title = "Mixed-Precision PTQ for SAM2"
 subtitle = "First Author · IJCAI-ECAI 2026 GLOW Workshop Oral"
 date = "2025–2026"
-content = "Identified non-uniform quantization sensitivity in SAM2 and developed **GLS-MPQ** with **M-KVM** to improve the accuracy-efficiency trade-off in promptable video segmentation. [Read the paper](/papers/layer-sensitivity-matters.pdf)."
+content = "Identified non-uniform quantization sensitivity in SAM2 and developed **GLS-MPQ** with **M-KVM** to improve the accuracy-efficiency trade-off in promptable video segmentation."
 tags = ["Efficient AI", "Quantization", "Video Segmentation"]
 
 [[items]]

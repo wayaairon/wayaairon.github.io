@@ -19,7 +19,7 @@ npm run dev
 
 ## Replace the temporary portrait
 
-The current portrait is clipped from the supplied DailyQuant screenshot. For the best result, replace `public/dailyquant-screenshot.png` with a square, high-resolution portrait and restore the normal image classes in `src/components/home/Profile.tsx`.
+The profile portrait is stored at `public/profile-photo.jpg` and displayed with the normal square image treatment in `src/components/home/Profile.tsx`.
 
 ## Content updates
 

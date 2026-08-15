@@ -2,13 +2,13 @@
 title = "周文钰"
 description = "周文钰的学术主页——高效人工智能、多模态学习与具身智能。"
 favicon = "/favicon.svg"
-last_updated = "2026年8月15日"
+last_updated = "2026年8月16日"
 
 [author]
 name = "周文钰"
 title = "本科生研究者"
 institution = "北京航空航天大学"
-avatar = "/dailyquant-screenshot.png"
+avatar = "/profile-photo.jpg"
 
 [social]
 email = "wayaairon@gmail.com"

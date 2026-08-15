@@ -116,9 +116,9 @@ export default function Profile({ author, social, features, researchInterests }:
                 <Image
                     src={author.avatar}
                     alt={author.name}
-                    width={1357}
-                    height={1138}
-                    className="absolute max-w-none w-[530%] h-auto left-[-52.7%] top-[-9.5%]"
+                    fill
+                    sizes="256px"
+                    className="object-cover object-center"
                     priority
                 />
             </div>

@@ -2,13 +2,13 @@
 title = "Wenyu Zhou"
 description = "Academic homepage of Wenyu Zhou — efficient AI, multimodal learning, and embodied intelligence."
 favicon = "/favicon.svg"
-last_updated = "August 15, 2026"
+last_updated = "August 16, 2026"
 
 [author]
 name = "Wenyu Zhou"
 title = "Undergraduate Researcher"
 institution = "Beihang University"
-avatar = "/dailyquant-screenshot.png"
+avatar = "/profile-photo.jpg"
 
 [social]
 email = "wayaairon@gmail.com"
