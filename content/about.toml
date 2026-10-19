@@ -17,9 +17,13 @@ title = "About"
 
 [[sections]]
 id = "internships"
-type = "markdown"
-source = "internships.md"
+type = "cards"
 title = "Internship Experience"
+
+[[sections.cards]]
+title = "SenseTime"
+subtitle = "Research Institute — Model Training and Engineering Efficiency"
+date = "Sep 2026–Present"
 
 [[sections]]
 id = "featured_publications"
