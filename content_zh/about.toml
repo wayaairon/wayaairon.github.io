@@ -16,6 +16,12 @@ source = "bio.md"
 title = "关于我"
 
 [[sections]]
+id = "internships"
+type = "markdown"
+source = "internships.md"
+title = "实习经历"
+
+[[sections]]
 id = "featured_publications"
 type = "publications"
 title = "代表性论文"
