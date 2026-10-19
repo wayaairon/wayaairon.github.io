@@ -16,6 +16,12 @@ source = "bio.md"
 title = "About"
 
 [[sections]]
+id = "internships"
+type = "markdown"
+source = "internships.md"
+title = "Internship Experience"
+
+[[sections]]
 id = "featured_publications"
 type = "publications"
 title = "Selected Publications"
