@@ -17,9 +17,13 @@ title = "关于我"
 
 [[sections]]
 id = "internships"
-type = "markdown"
-source = "internships.md"
+type = "cards"
 title = "实习经历"
+
+[[sections.cards]]
+title = "商汤科技"
+subtitle = "研究院-模型训练与工程效率"
+date = "2026.09–至今"
 
 [[sections]]
 id = "featured_publications"
