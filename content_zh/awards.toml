@@ -3,6 +3,12 @@ title = "荣誉"
 description = "代表性荣誉与奖项。"
 
 [[items]]
+title = "国家励志奖学金"
+subtitle = "教育部"
+date = "2025–2026 学年"
+content = "获 2025–2026 学年国家励志奖学金。"
+
+[[items]]
 title = "第一作者 Oral Presentation"
 subtitle = "IJCAI-ECAI GLOW Workshop"
 date = "2026"
