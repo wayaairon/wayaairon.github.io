@@ -2,6 +2,6 @@
 
 我已**保研直博至复旦大学可信具身智能研究院**，将与**上海人工智能实验室（Shanghai AI Laboratory）联合培养**，博士阶段的导师为复旦大学的[吴桐老师](https://wutong16.github.io/)和上海人工智能实验室的[沈春华老师](https://cshen.github.io/)。
 
-我的第一作者工作聚焦于 SAM2 视频分割的混合精度后训练量化。此外，我运营 **DailyQuant｜量化实验室**，持续解读前沿 AI 论文并分享结构化阅读笔记。
+我的第一作者工作聚焦于 SAM2 视频分割的混合精度后训练量化。此外，我运营小红书账号 [DailyQuant｜量化实验室](/dailyquant-xiaohongshu.jpg)，持续解读前沿 AI 论文并分享结构化阅读笔记。点击账号名称即可查看名片，欢迎扫码关注。
 
-我曾获 **2025–2026 学年国家励志奖学金**。欢迎通过[邮件](mailto:wayaairon@gmail.com)与我交流研究或探讨合作。
+欢迎通过[邮件](mailto:wayaairon@gmail.com)与我交流研究或探讨合作。
