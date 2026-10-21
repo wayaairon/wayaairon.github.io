@@ -2,7 +2,7 @@
 title = "周文钰"
 description = "周文钰的学术主页——高效人工智能、多模态学习与具身智能。"
 favicon = "/favicon.svg"
-last_updated = "2026年10月19日"
+last_updated = "2026年10月21日"
 
 [author]
 name = "周文钰"
@@ -20,13 +20,13 @@ enable_likes = false
 enable_one_page_mode = false
 
 [i18n]
-enabled = true
-locales = ["en", "zh"]
+enabled = false
+locales = ["en"]
 default_locale = "en"
-mode = "auto"
+mode = "fixed"
 fixed_locale = "en"
-persist = true
-switcher = true
+persist = false
+switcher = false
 
 [i18n.labels]
 en = "English"
@@ -55,9 +55,3 @@ title = "荣誉"
 type = "page"
 target = "awards"
 href = "/awards"
-
-[[navigation]]
-title = "简历"
-type = "page"
-target = "cv"
-href = "/cv"
