@@ -2,7 +2,7 @@
 title = "Wenyu Zhou"
 description = "Academic homepage of Wenyu Zhou — efficient AI, multimodal learning, and embodied intelligence."
 favicon = "/favicon.svg"
-last_updated = "October 19, 2026"
+last_updated = "October 21, 2026"
 
 [author]
 name = "Wenyu Zhou"
@@ -20,13 +20,13 @@ enable_likes = false
 enable_one_page_mode = false
 
 [i18n]
-enabled = true
-locales = ["en", "zh"]
+enabled = false
+locales = ["en"]
 default_locale = "en"
-mode = "auto"
+mode = "fixed"
 fixed_locale = "en"
-persist = true
-switcher = true
+persist = false
+switcher = false
 
 [i18n.labels]
 en = "English"
@@ -55,9 +55,3 @@ title = "Awards"
 type = "page"
 target = "awards"
 href = "/awards"
-
-[[navigation]]
-title = "CV"
-type = "page"
-target = "cv"
-href = "/cv"
