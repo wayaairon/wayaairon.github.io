@@ -1,8 +1,8 @@
 [site]
 title = "Wenyu Zhou"
 description = "Academic homepage of Wenyu Zhou — efficient AI, multimodal learning, and embodied intelligence."
-favicon = "/favicon.svg"
-last_updated = "October 21, 2026"
+favicon = "/favicon-bubbles.svg"
+last_updated = "October 25, 2026"
 
 [author]
 name = "Wenyu Zhou"
