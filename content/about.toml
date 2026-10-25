@@ -3,10 +3,9 @@ title = "About"
 
 [profile]
 research_interests = [
-  "Efficient AI & Model Compression",
-  "Multimodal Learning",
-  "Embodied Intelligence",
-  "Agentic Reinforcement Learning"
+  { title = "Model Efficiency", description = "Efficient Training, Inference & Quantization" },
+  { title = "World Models", description = "Video Generation, Predictive Representations & Interactive Environments" },
+  { title = "Long-Horizon Agent Learning", description = "Agentic RL, On-Policy Distillation & Multi-Turn Training" }
 ]
 
 [[sections]]
