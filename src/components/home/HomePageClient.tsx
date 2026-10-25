@@ -1,6 +1,6 @@
 'use client';
 
-import Profile from '@/components/home/Profile';
+import Profile, { type ResearchInterest } from '@/components/home/Profile';
 import About from '@/components/home/About';
 import SelectedPublications from '@/components/home/SelectedPublications';
 import News, { NewsItem } from '@/components/home/News';
@@ -38,7 +38,7 @@ export interface HomePageLocaleData {
   social: SiteConfig['social'];
   features: SiteConfig['features'];
   enableOnePageMode?: boolean;
-  researchInterests?: string[];
+  researchInterests?: ResearchInterest[];
   pagesToShow: PageData[];
 }
 

@@ -27,11 +27,13 @@ const OrcidIcon = ({ className }: { className?: string }) => (
     </svg>
 );
 
+export type ResearchInterest = string | { title: string; description?: string };
+
 interface ProfileProps {
     author: SiteConfig['author'];
     social: SiteConfig['social'];
     features: SiteConfig['features'];
-    researchInterests?: string[];
+    researchInterests?: ResearchInterest[];
 }
 
 export default function Profile({ author, social, features, researchInterests }: ProfileProps) {
@@ -307,9 +309,18 @@ export default function Profile({ author, social, features, researchInterests }:
             {researchInterests && researchInterests.length > 0 && (
                 <div className="bg-neutral-100 dark:bg-neutral-800 rounded-lg p-4 mb-6 hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
                     <h3 className="font-semibold text-primary mb-3">{messages.profile.researchInterests}</h3>
-                    <div className="space-y-2 text-sm text-neutral-700 dark:text-neutral-500">
+                    <div className="space-y-4 text-sm text-neutral-700 dark:text-neutral-500">
                         {researchInterests.map((interest, index) => (
-                            <div key={index}>{interest}</div>
+                            <div key={index}>
+                                {typeof interest === 'string' ? interest : (
+                                    <>
+                                        <p className="font-semibold text-primary leading-snug">{interest.title}</p>
+                                        {interest.description && (
+                                            <p className="mt-1 text-xs leading-relaxed text-neutral-600 dark:text-neutral-500">{interest.description}</p>
+                                        )}
+                                    </>
+                                )}
+                            </div>
                         ))}
                     </div>
                 </div>
