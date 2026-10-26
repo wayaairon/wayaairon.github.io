@@ -3,27 +3,14 @@
 :global(.dark) .page{--paper:#252d23;--ink:#e2e8dc;--muted:#b0bca7;--line:#46513e;--sage:#a1b58c}:global(.dark) .formGrid input,:global(.dark) .formGrid textarea{background:#20271e}:global(.dark) .note{box-shadow:3px 4px 0 #46513e;background-image:linear-gradient(to right,#bacba419 1px,transparent 1px),linear-gradient(to bottom,#bacba419 1px,transparent 1px)}:global(.dark) .siteLike{color:#c3ceb9;border-color:#56614d}:global(.dark) .success{color:#b4cba6}:global(.dark) .error,:global(.dark) .likeError{color:#ecb0b0}:global(.dark) .reply>span{color:#cfb784}
 @media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.page{padding:28px 18px 40px}.heading{align-items:flex-start;gap:15px}.heading h1{font-size:30px}.formGrid{grid-template-columns:1fr}.compose{padding:20px 16px}.formGrid input,.formGrid textarea{font-size:16px}.grid{grid-template-columns:1fr;gap:28px}.wallHeading{gap:8px}.note{padding:30px 22px 17px}.noteHeader time{font-size:11px}.noteFooter button,.siteLike,.submit,.empty button,.more{min-height:44px}.pageFooter{font-size:11px}}
 
-/* Shared like feedback: rose paper, a springy heart, and a short outward burst. */
-.siteLike,.noteFooter button{position:relative;transition:background-color .2s,border-color .2s,color .2s,box-shadow .2s;isolation:isolate}
-.siteLike[aria-pressed=true]{color:#855063;background:#fbf0f4;border-color:#e8c6d2;box-shadow:0 2px 7px #a2536e0b}
-.noteFooter button[aria-pressed=true]{color:#855063;background:#f8e8ee;border-color:#e8c6d2}
-.siteLike[aria-pressed=true] .heartWrap,.noteFooter button[aria-pressed=true] .heartWrap{color:#b85d7b}
-.siteLike[aria-pressed=true] .count{color:#895266}
-.heartWrap{position:relative;display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;flex-shrink:0;overflow:visible}
-.heartIcon,.heartPop{display:inline-flex;align-items:center;justify-content:center;transform-origin:50% 65%}
-.heartPop{animation:heart-pop .6s cubic-bezier(.2,.8,.3,1)}
-.heartBurst{position:absolute;inset:0;pointer-events:none;color:#bd738d}
-.particle{position:absolute;left:calc(50% - 3.5px);top:calc(50% - 3.5px);display:flex;opacity:0;animation:heart-scatter .7s cubic-bezier(.15,.6,.35,1) both}
-.particle:nth-child(1){--dx:-21px;--dy:-19px;--twist:-24deg}
-.particle:nth-child(2){--dx:-7px;--dy:-30px;--twist:12deg;animation-delay:20ms}
-.particle:nth-child(3){--dx:14px;--dy:-25px;--twist:25deg;animation-delay:35ms}
-.particle:nth-child(4){--dx:25px;--dy:-8px;--twist:32deg;animation-delay:10ms}
-.particle:nth-child(5){--dx:20px;--dy:13px;--twist:18deg;animation-delay:40ms}
-.particle:nth-child(6){--dx:-23px;--dy:9px;--twist:-18deg;animation-delay:25ms}
-@keyframes heart-pop{0%{transform:scale(.78)}30%{transform:scale(1.28) rotate(-8deg)}55%{transform:scale(.94) rotate(5deg)}78%{transform:scale(1.08) rotate(-2deg)}100%{transform:scale(1) rotate(0)}}
-@keyframes heart-scatter{0%{opacity:0;transform:translate(0,0) scale(.25)}18%{opacity:.85}70%{opacity:.45}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--twist)) scale(.65)}}
-:global(.dark) .siteLike[aria-pressed=true],:global(.dark) .noteFooter button[aria-pressed=true]{color:#ecc2d0;background:#382b33;border-color:#795467;box-shadow:none}
-:global(.dark) .siteLike[aria-pressed=true] .heartWrap,:global(.dark) .noteFooter button[aria-pressed=true] .heartWrap{color:#ee9cb9}
-:global(.dark) .siteLike[aria-pressed=true] .count{color:#ecc2d0}
-:global(.dark) .heartBurst{color:#e6a6be}
-@media(prefers-reduced-motion:reduce){.siteLike,.noteFooter button{transition:none}.heartPop,.particle{animation:none}.heartBurst{display:none}}
+/* Warm gold heart and neutral text, with the selected colorful fireworks. */
+.siteLike,.noteFooter button{position:relative;transition:color .2s,border-color .2s;isolation:isolate;color:#41483d;gap:8px}
+.siteLike{border-radius:8px}
+.count,.noteFooter button>span:last-child{color:#75806b;font-variant-numeric:tabular-nums}
+.heartWrap{position:relative;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;flex-shrink:0;border-radius:50%;color:#75806b;transition:color .2s,background-color .2s}
+.siteLike[aria-pressed=true] .heartWrap,.noteFooter button[aria-pressed=true] .heartWrap{color:#ac8950;background:#f8f1e3}
+.fireworkCanvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:100;contain:strict}
+:global(.dark) .siteLike,:global(.dark) .noteFooter button{color:#e4ebdd}
+:global(.dark) .count,:global(.dark) .noteFooter button>span:last-child,:global(.dark) .heartWrap{color:#b4c0aa}
+:global(.dark) .siteLike[aria-pressed=true] .heartWrap,:global(.dark) .noteFooter button[aria-pressed=true] .heartWrap{color:#d1b475;background:#3c3528}
+@media(prefers-reduced-motion:reduce){.siteLike,.noteFooter button,.heartWrap{transition:none}.fireworkCanvas{display:none}}

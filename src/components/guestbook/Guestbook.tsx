@@ -16,11 +16,101 @@ async function request<T>(path:string,options:RequestInit={},token?:string):Prom
 }
 async function visitorToken(){const saved=storedToken();if(saved)return saved;if(!tokenPromise)tokenPromise=request<{token:string}>('/session',{method:'POST'}).then(d=>{memoryToken=d.token;try{localStorage.setItem(TOKEN_KEY,d.token)}catch{}return d.token}).finally(()=>{tokenPromise=null});return tokenPromise}
 const date=(value:number)=>new Date(value).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+// Match the selected “彩色碎光” preview; the canvas exists only during a new like.
+function launchLikeFireworks(anchor: HTMLElement) {
+ const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+ if (motion.matches) return;
+ const canvas = document.createElement('canvas');
+ const ctx = canvas.getContext('2d');
+ if (!ctx) return;
+ canvas.className = styles.fireworkCanvas;
+ canvas.setAttribute('aria-hidden', 'true');
+ canvas.dataset.likeFireworks = '';
+ const width = window.innerWidth, height = window.innerHeight;
+ const dpr = Math.min(window.devicePixelRatio || 1, 2);
+ canvas.width = Math.round(width * dpr);
+ canvas.height = Math.round(height * dpr);
+ ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+ const box = anchor.getBoundingClientRect();
+ const x = box.left + box.width / 2, y = box.top + box.height / 2;
+ const palette = document.documentElement.classList.contains('dark')
+  ? ['#f7a9c5', '#9dd3ed', '#efd18b'] : ['#ca7191', '#6f9fc1', '#c5a05b'];
+ const born = performance.now(), radius = 88;
+ type Particle = {x:number;y:number;born:number;life:number;angle:number;distance:number;fall:number;size:number;color:string};
+ const particles: Particle[] = [];
+ const rings: {x:number;y:number;born:number;color:string}[] = [];
+ for (let b = 0; b < 2; b++) {
+  const bx = x + (b ? 18 : 0), by = y - (b ? 18 : 0), delay = b * 105;
+  rings.push({x:bx,y:by,born:born+delay,color:palette[0]});
+  for (let i = 0; i < 36; i++) {
+   const angle = i / 36 * Math.PI * 2 + (Math.random() - .5) * .12;
+   const fall = Math.min(radius * .42, Math.max(0, height - by - 12));
+   const dx = Math.cos(angle), dy = Math.sin(angle);
+   const horizontal = (dx > 0 ? width - bx - 8 : bx - 8) / Math.max(Math.abs(dx), .001);
+   const vertical = (dy > 0 ? height - by - fall - 8 : by - 8) / Math.max(Math.abs(dy), .001);
+   const distance = Math.max(4, Math.min(radius * (.58 + Math.random() * .5) * (b ? .72 : 1), horizontal, vertical));
+   particles.push({x:bx,y:by,born:born+delay,life:1050*(.76+Math.random()*.24),angle,distance,fall,size:1.25+Math.random()*.55,color:palette[i%3]});
+  }
+ }
+ function position(p: Particle, t: number) {
+  const spread = 1 - Math.exp(-4.8 * t);
+  return {x:p.x+Math.cos(p.angle)*p.distance*spread,y:p.y+Math.sin(p.angle)*p.distance*spread+p.fall*t*t};
+ }
+ let frame = 0, stopped = false;
+ function cleanup() {
+  if (stopped) return;
+  stopped = true;
+  cancelAnimationFrame(frame);
+  canvas.remove();
+  window.removeEventListener('resize', cleanup);
+  window.removeEventListener('scroll', cleanup, true);
+  motion.removeEventListener('change', cleanup);
+ }
+ function draw(now: number) {
+  if (!ctx || stopped) return;
+  ctx.clearRect(0, 0, width, height);
+  let active = false;
+  for (const r of rings) {
+   const t = (now - r.born) / 250;
+   if (t >= 1) continue;
+   active = true;
+   if (t < 0) continue;
+   ctx.globalAlpha = (1-t)*.24;
+   ctx.strokeStyle = r.color; ctx.lineWidth = .8;
+   ctx.beginPath(); ctx.arc(r.x,r.y,5+t*21,0,Math.PI*2); ctx.stroke();
+  }
+  for (const p of particles) {
+   const t = (now - p.born) / p.life;
+   if (t >= 1) continue;
+   active = true;
+   if (t < 0) continue;
+   const point = position(p,t), tail = position(p,Math.max(0,t-.04));
+   const opacity = Math.min(t*12,1)*Math.pow(1-t,1.1);
+   ctx.globalAlpha = opacity; ctx.strokeStyle = p.color; ctx.fillStyle = p.color;
+   ctx.lineCap = 'round'; ctx.lineWidth = p.size;
+   ctx.shadowColor = p.color; ctx.shadowBlur = 2.5;
+   ctx.beginPath(); ctx.moveTo(tail.x,tail.y); ctx.lineTo(point.x,point.y); ctx.stroke();
+   ctx.shadowBlur = 0; ctx.globalAlpha = opacity*.8;
+   ctx.beginPath(); ctx.arc(point.x,point.y,p.size*.65,0,Math.PI*2); ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+  if (active) frame = requestAnimationFrame(draw); else cleanup();
+ }
+ document.body.appendChild(canvas);
+ window.addEventListener('resize', cleanup);
+ window.addEventListener('scroll', cleanup, true);
+ motion.addEventListener('change', cleanup);
+ frame = requestAnimationFrame(draw);
+ return cleanup;
+}
 function LikeHeart({liked,burst}:{liked:boolean;burst:number}) {
- return <span className={styles.heartWrap} aria-hidden="true">
-  <span key={`heart-${burst}`} className={burst?styles.heartPop:styles.heartIcon}><Heart size={17} strokeWidth={1.8} fill={liked?'currentColor':'none'}/></span>
-  {burst>0&&<span key={`burst-${burst}`} className={styles.heartBurst}>{Array.from({length:6},(_,index)=><span key={index} className={styles.particle}><Heart size={7} strokeWidth={1.3} fill="currentColor"/></span>)}</span>}
- </span>
+ const heartRef = useRef<HTMLSpanElement>(null);
+ useEffect(() => {
+  if (liked && burst > 0 && heartRef.current) return launchLikeFireworks(heartRef.current);
+ }, [liked, burst]);
+ return <span ref={heartRef} className={styles.heartWrap} aria-hidden="true">
+  <Heart size={16} strokeWidth={1.7} fill={liked?'currentColor':'none'}/>
+ </span>;
 }
 
 export function SiteLikeButton(){const[count,setCount]=useState<number|null>(null),[liked,setLiked]=useState(false),[busy,setBusy]=useState(false),[error,setError]=useState(''),[burst,setBurst]=useState(0);
