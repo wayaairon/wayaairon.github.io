@@ -14,6 +14,7 @@ import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import { Github, Linkedin, Pin } from 'lucide-react';
 import type { SiteConfig } from '@/lib/config';
 import { useMessages } from '@/lib/i18n/useMessages';
+import { SiteLikeButton } from '@/components/guestbook/Guestbook';
 
 // Custom ORCID icon component
 const OrcidIcon = ({ className }: { className?: string }) => (
@@ -306,6 +307,7 @@ export default function Profile({ author, social, features, researchInterests }:
             </div>
 
             {/* Research Interests */}
+            <div className="mb-6"><SiteLikeButton /></div>
             {researchInterests && researchInterests.length > 0 && (
                 <div className="bg-neutral-100 dark:bg-neutral-800 rounded-lg p-4 mb-6 hover:shadow-lg transition-all duration-200 hover:scale-[1.02]">
                     <h3 className="font-semibold text-primary mb-3">{messages.profile.researchInterests}</h3>
