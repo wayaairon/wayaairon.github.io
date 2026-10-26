@@ -2,26 +2,28 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Heart, Paperclip, PenLine, ArrowUpRight } from 'lucide-react';
 import styles from './Guestbook.module.css';
-const API='https://wayaairon-guestbook.zhouzhouyuyu.chatgpt.site/api';
+const API=process.env.NEXT_PUBLIC_GUESTBOOK_API_URL || 'https://wayaairon-guestbook.zhouzhouyuyu.chatgpt.site/api';
 const TOKEN_KEY='wenyu-guestbook-visitor';
 type Note={id:string;nickname:string;body:string;reply:string|null;created_at:number;replied_at:number|null;likes:number};
 type Stats={likes:number;notes:number};
 let tokenPromise:Promise<string>|null=null;
-function storedToken(){try{return localStorage.getItem(TOKEN_KEY)}catch{return null}}
+let memoryToken:string|null=null;
+function storedToken(){try{return localStorage.getItem(TOKEN_KEY)||memoryToken}catch{return memoryToken}}
+function clearExpiredToken(error:unknown){if((error as Error & {status?:number}).status===401){memoryToken=null;try{localStorage.removeItem(TOKEN_KEY)}catch{}}}
 async function request<T>(path:string,options:RequestInit={},token?:string):Promise<T>{
  const r=await fetch(API+path,{...options,headers:{...(options.body?{'Content-Type':'application/json'}:{}),...(token?{Authorization:'Bearer '+token}:{}),...options.headers}});
- const d=await r.json();if(!r.ok)throw new Error(d.error||'Something went wrong. Please try again.');return d as T;
+ const d=await r.json();if(!r.ok){const error=new Error(d.error||'Something went wrong. Please try again.') as Error & {status:number};error.status=r.status;throw error;}return d as T;
 }
-async function visitorToken(){const saved=storedToken();if(saved)return saved;if(!tokenPromise)tokenPromise=request<{token:string}>('/session',{method:'POST'}).then(d=>{try{localStorage.setItem(TOKEN_KEY,d.token)}catch{}return d.token}).finally(()=>{tokenPromise=null});return tokenPromise}
+async function visitorToken(){const saved=storedToken();if(saved)return saved;if(!tokenPromise)tokenPromise=request<{token:string}>('/session',{method:'POST'}).then(d=>{memoryToken=d.token;try{localStorage.setItem(TOKEN_KEY,d.token)}catch{}return d.token}).finally(()=>{tokenPromise=null});return tokenPromise}
 const date=(value:number)=>new Date(value).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
 export function SiteLikeButton(){const[count,setCount]=useState<number|null>(null),[liked,setLiked]=useState(false),[busy,setBusy]=useState(false),[error,setError]=useState('');
- useEffect(()=>{let live=true;request<Stats>('/stats').then(d=>{if(live)setCount(d.likes)}).catch(()=>{});const token=storedToken();if(token)request<{liked:string[]}>('/mine',{},token).then(d=>{if(live)setLiked(d.liked.includes('site'))}).catch(()=>{try{localStorage.removeItem(TOKEN_KEY)}catch{}});return()=>{live=false}},[]);
+ useEffect(()=>{let live=true;request<Stats>('/stats').then(d=>{if(live)setCount(d.likes)}).catch(()=>{});const token=storedToken();if(token)request<{liked:string[]}>('/mine',{},token).then(d=>{if(live)setLiked(d.liked.includes('site'))}).catch(clearExpiredToken);return()=>{live=false}},[]);
  async function toggle(){if(busy)return;setBusy(true);setError('');try{const d=await request<{likes:number;liked:boolean}>('/likes',{method:'PUT',body:JSON.stringify({target:'site',liked:!liked})},await visitorToken());setCount(d.likes);setLiked(d.liked)}catch(e){setError((e as Error).message)}finally{setBusy(false)}}
  return <div className={styles.siteLikeWrap}><button type="button" className={styles.siteLike} aria-pressed={liked} disabled={busy} onClick={toggle}><Heart size={16} fill={liked?'currentColor':'none'}/><span>{liked?'Thanks for the love':'Like this space'}</span><span className={styles.count}>{count===null?'—':count}</span></button>{error&&<p className={styles.likeError} role="status">{error}</p>}</div>
 }
 export default function Guestbook(){const[notes,setNotes]=useState<Note[]>([]),[next,setNext]=useState<number|null>(null),[liked,setLiked]=useState<Set<string>>(new Set()),[loading,setLoading]=useState(true),[loadError,setLoadError]=useState(''),[nickname,setNickname]=useState(''),[body,setBody]=useState(''),[website,setWebsite]=useState(''),[sending,setSending]=useState(false),[notice,setNotice]=useState(''),[sendError,setSendError]=useState(''),[busyIds,setBusyIds]=useState<Set<string>>(new Set()),[moreBusy,setMoreBusy]=useState(false);const formRef=useRef<HTMLFormElement>(null);
  const load=useCallback(async()=>{setLoading(true);setLoadError('');try{const d=await request<{notes:Note[];next:number|null}>('/notes');setNotes(d.notes);setNext(d.next)}catch(e){setLoadError((e as Error).message)}finally{setLoading(false)}},[]);
- useEffect(()=>{load();const token=storedToken();if(token)request<{liked:string[]}>('/mine',{},token).then(d=>setLiked(new Set(d.liked))).catch(()=>{try{localStorage.removeItem(TOKEN_KEY)}catch{}});try{setNickname(localStorage.getItem('wenyu-guestbook-nickname')||'')}catch{}},[load]);
+ useEffect(()=>{load();const token=storedToken();if(token)request<{liked:string[]}>('/mine',{},token).then(d=>setLiked(new Set(d.liked))).catch(clearExpiredToken);try{setNickname(localStorage.getItem('wenyu-guestbook-nickname')||'')}catch{}},[load]);
  async function submit(e:React.FormEvent){e.preventDefault();if(sending)return;setSending(true);setSendError('');setNotice('');try{await request('/notes',{method:'POST',body:JSON.stringify({nickname,body,website})},await visitorToken());try{localStorage.setItem('wenyu-guestbook-nickname',nickname.trim())}catch{}setBody('');setNotice('Your note is safely tucked away for review. It will appear here once approved. Thank you!')}catch(e){setSendError((e as Error).message)}finally{setSending(false)}}
  async function like(note:Note){if(busyIds.has(note.id))return;setBusyIds(v=>new Set(v).add(note.id));setLoadError('');try{const d=await request<{likes:number;liked:boolean}>('/likes',{method:'PUT',body:JSON.stringify({target:note.id,liked:!liked.has(note.id)})},await visitorToken());setNotes(v=>v.map(n=>n.id===note.id?{...n,likes:d.likes}:n));setLiked(v=>{const s=new Set(v);if(d.liked)s.add(note.id);else s.delete(note.id);return s})}catch(e){setLoadError((e as Error).message)}finally{setBusyIds(v=>{const s=new Set(v);s.delete(note.id);return s})}}
  async function more(){setMoreBusy(true);try{const d=await request<{notes:Note[];next:number|null}>('/notes?before='+next);setNotes(v=>[...v,...d.notes.filter(n=>!v.some(x=>x.id===n.id))]);setNext(d.next)}catch(e){setLoadError((e as Error).message)}finally{setMoreBusy(false)}}
