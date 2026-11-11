@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 import { CardPageConfig } from '@/types/page';
+import ProjectsList from './ProjectsList';
+import AwardsList from './AwardsList';
 
 const markdownComponents = {
     p: ({ children }: React.ComponentProps<'p'>) => <p className="mb-3 last:mb-0">{children}</p>,
@@ -30,6 +32,13 @@ const markdownComponents = {
 };
 
 export default function CardPage({ config, embedded = false }: { config: CardPageConfig; embedded?: boolean }) {
+    if (config.layout === 'projects') {
+        return <ProjectsList config={config} embedded={embedded} />;
+    }
+    if (config.layout === 'awards') {
+        return <AwardsList config={config} embedded={embedded} />;
+    }
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
