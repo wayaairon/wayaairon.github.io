@@ -1,4 +1,5 @@
 type = "card"
+layout = "awards"
 title = "荣誉"
 description = "代表性荣誉与奖项。"
 
