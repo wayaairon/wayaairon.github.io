@@ -1,4 +1,5 @@
 type = "card"
+layout = "projects"
 title = "Projects"
 description = "Selected research, engineering, and science-communication projects."
 
