@@ -1,4 +1,5 @@
 type = "card"
+layout = "projects"
 title = "项目"
 description = "代表性科研、工程与科普项目。"
 
