@@ -30,8 +30,10 @@ export default function DynamicPageClient({ dataByLocale, defaultLocale }: Dynam
     return null;
   }
 
+  const wideLayout = pageData.type === 'publication' || (pageData.type === 'card' && Boolean(pageData.config.layout));
+
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className={`mx-auto px-4 sm:px-6 lg:px-8 py-12 ${wideLayout ? 'max-w-6xl' : 'max-w-4xl'}`}>
       {pageData.type === 'publication' && (
         <PublicationsList config={pageData.config} publications={pageData.publications} />
       )}
