@@ -1,4 +1,5 @@
 type = "card"
+layout = "awards"
 title = "Awards"
 description = "Selected honors and awards."
 
