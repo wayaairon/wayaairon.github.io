@@ -17,7 +17,13 @@ title = "About"
 [[sections]]
 id = "internships"
 type = "cards"
-title = "💼 Internship Experience"
+title = "💼 Experience"
+
+[[sections.cards]]
+title = "The University of Hong Kong"
+subtitle = "Research Assistant · School of Computing and Data Science (CDS)"
+content = "Prof. Yi Ma’s group · Supervisor: Hao Ma"
+date = "Nov 2026–Present"
 
 [[sections.cards]]
 title = "SenseTime"
