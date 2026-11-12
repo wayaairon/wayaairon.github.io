@@ -11,6 +11,8 @@ interface SectionConfig {
   id: string;
   type: 'markdown' | 'publications' | 'list' | 'cards';
   title?: string;
+  description?: string;
+  date_column?: 'month' | 'range';
   source?: string;
   filter?: string;
   limit?: number;
@@ -54,7 +56,7 @@ function processSections(sections: SectionConfig[], locale?: string): SectionCon
         const newsData = section.source ? getTomlContent<{ news: NewsItem[] }>(section.source, locale) : null;
         return {
           ...section,
-          items: newsData?.news || [],
+          items: newsData?.news || section.items || [],
         };
       }
       default:
