@@ -2,7 +2,7 @@
 title = "Wenyu Zhou"
 description = "Academic homepage of Wenyu Zhou — efficient AI, multimodal learning, and embodied intelligence."
 favicon = "/favicon-bubbles.svg"
-last_updated = "October 26, 2026"
+last_updated = "November 12, 2026"
 
 [author]
 name = "Wenyu Zhou"
@@ -55,9 +55,3 @@ title = "Awards"
 type = "page"
 target = "awards"
 href = "/awards"
-
-[[navigation]]
-title = "Guestbook"
-type = "page"
-target = "guestbook"
-href = "/guestbook"
