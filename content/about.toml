@@ -26,9 +26,26 @@ date = "Sep 2026–Present"
 
 [[sections]]
 id = "mentorship"
-type = "markdown"
-source = "mentorship.md"
+type = "list"
 title = "🧑‍🏫 Mentorship"
+description = "Teaching Assistant · Beihang University"
+date_column = "range"
+
+[[sections.items]]
+date = "2026.03-2026.07"
+content = "Signals and Systems, Mathematical Statistics"
+
+[[sections.items]]
+date = "2026.03-2026.06"
+content = "Data Structures"
+
+[[sections.items]]
+date = "2025.09-2026.01"
+content = "Fundamentals of Physics A2"
+
+[[sections.items]]
+date = "2024.09-2025.01"
+content = "Advanced Algebra for Engineering"
 
 [[sections]]
 id = "news"
