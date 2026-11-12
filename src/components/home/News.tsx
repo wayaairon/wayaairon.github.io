@@ -12,9 +12,11 @@ export interface NewsItem {
 interface NewsProps {
     items: NewsItem[];
     title?: string;
+    description?: string;
+    dateColumn?: 'month' | 'range';
 }
 
-export default function News({ items, title }: NewsProps) {
+export default function News({ items, title, description, dateColumn = 'month' }: NewsProps) {
     const messages = useMessages();
     const resolvedTitle = title || messages.home.news;
 
@@ -25,10 +27,11 @@ export default function News({ items, title }: NewsProps) {
             transition={{ duration: 0.6, delay: 0.5 }}
         >
             <h2 className="text-2xl font-serif font-bold text-primary mb-4">{resolvedTitle}</h2>
+            {description && <p className="mb-4 text-sm text-neutral-700">{description}</p>}
             <div className="space-y-3">
                 {items.map((item, index) => (
                     <div key={index} className="flex items-start space-x-3">
-                        <span className="text-xs text-neutral-500 mt-1 w-16 flex-shrink-0">{item.date}</span>
+                        <span className={`text-xs text-neutral-500 mt-1 flex-shrink-0 ${dateColumn === 'range' ? 'w-28 whitespace-nowrap' : 'w-16'}`}>{item.date}</span>
                         <div className="min-w-0 text-sm text-neutral-700">
                             <ReactMarkdown
                                 components={{

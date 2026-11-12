@@ -18,6 +18,8 @@ interface SectionConfig {
   id: string;
   type: 'markdown' | 'publications' | 'list' | 'cards';
   title?: string;
+  description?: string;
+  date_column?: 'month' | 'range';
   source?: string;
   filter?: string;
   limit?: number;
@@ -133,6 +135,8 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
                         key={section.id}
                         items={section.items || []}
                         title={section.title}
+                        description={section.description}
+                        dateColumn={section.date_column}
                       />
                     );
                   default:
