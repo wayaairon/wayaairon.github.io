@@ -105,6 +105,11 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
                                       {card.subtitle}
                                     </p>
                                   )}
+                                  {card.content && (
+                                    <p className="mt-2 text-sm leading-relaxed text-neutral-600 dark:text-neutral-500">
+                                      {card.content}
+                                    </p>
+                                  )}
                                 </div>
                               </div>
                             </article>
