@@ -32,6 +32,12 @@ filter = "selected"
 limit = 5
 
 [[sections]]
+id = "mentorship"
+type = "markdown"
+source = "mentorship.md"
+title = "🧑‍🏫 Mentorship"
+
+[[sections]]
 id = "news"
 type = "list"
 title = "News"
