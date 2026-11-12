@@ -22,11 +22,13 @@ title = "💼 Experience"
 [[sections.cards]]
 title = "The University of Hong Kong"
 subtitle = "Research Assistant · School of Computing and Data Science (CDS)"
-content = "Prof. Yi Ma’s group · Supervisor: Hao Ma"
+content = "Working with [Dr. Hao Ma](https://haomafrlu.github.io/) and supervised by [Prof. Yi Ma](https://www.ai.hku.hk/people/academic-staff/mayi)."
+image = "/hku-emblem.png"
 date = "Nov 2026–Present"
 
 [[sections.cards]]
 title = "SenseTime"
+image = "/sensetime-logo.png"
 subtitle = "Research Institute — Model Training and Engineering Efficiency"
 date = "Sep 2026–Present"
 
