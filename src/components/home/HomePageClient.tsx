@@ -12,6 +12,8 @@ import { Publication } from '@/types/publication';
 import { CardPageConfig, PublicationPageConfig, TextPageConfig } from '@/types/page';
 import { useLocaleStore } from '@/lib/stores/localeStore';
 import { Building2 } from 'lucide-react';
+import Image from 'next/image';
+import ReactMarkdown from 'react-markdown';
 import type { CardItem } from '@/types/page';
 
 interface SectionConfig {
@@ -88,9 +90,21 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
                               className="rounded-xl border border-neutral-200 dark:border-[rgba(148,163,184,0.24)] bg-neutral-50 dark:bg-neutral-800 p-5 sm:p-6 shadow-sm"
                             >
                               <div className="flex items-start gap-4">
-                                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent" aria-hidden="true">
-                                  <Building2 size={22} strokeWidth={1.7} />
-                                </div>
+                                {card.image ? (
+                                  <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-lg bg-white p-2 sm:w-24">
+                                    <Image
+                                      src={card.image}
+                                      alt={`${card.title} logo`}
+                                      width={192}
+                                      height={192}
+                                      className="h-full w-full object-contain"
+                                    />
+                                  </div>
+                                ) : (
+                                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent" aria-hidden="true">
+                                    <Building2 size={22} strokeWidth={1.7} />
+                                  </div>
+                                )}
                                 <div className="min-w-0 flex-1">
                                   <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
                                     <h3 className="text-lg font-semibold text-primary">{card.title}</h3>
@@ -106,9 +120,15 @@ export default function HomePageClient({ dataByLocale, defaultLocale }: HomePage
                                     </p>
                                   )}
                                   {card.content && (
-                                    <p className="mt-2 text-sm leading-relaxed text-neutral-600 dark:text-neutral-500">
-                                      {card.content}
-                                    </p>
+                                    <div className="mt-2 text-sm leading-relaxed text-neutral-600 dark:text-neutral-500">
+                                      <ReactMarkdown components={{
+                                        a: ({ children, ...props }) => (
+                                          <a {...props} target="_blank" rel="noopener noreferrer" className="font-medium text-accent hover:underline underline-offset-2">{children}</a>
+                                        ),
+                                      }}>
+                                        {card.content}
+                                      </ReactMarkdown>
+                                    </div>
                                   )}
                                 </div>
                               </div>
