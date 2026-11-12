@@ -1,9 +1,24 @@
+.groups {
+  min-width: 0;
+  display: grid;
+  gap: 1.75rem;
+}
+
+.year {
+  margin-bottom: 0.5rem;
+  color: var(--neutral-500);
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
 .entry {
   position: relative;
   padding-inline-start: 1.5rem;
 }
 
-/* Each segment connects its marker to the next, even when details expand. */
+/* Connect the awards within each year. */
 .entry:not(:last-child)::before {
   content: '';
   position: absolute;
@@ -26,16 +41,8 @@
 }
 
 .row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.75rem;
   padding: 0.5rem 0.25rem;
   min-height: 2.75rem;
   line-height: 1.5;
-  list-style: none;
-}
-
-.row::-webkit-details-marker {
-  display: none;
+  overflow-wrap: anywhere;
 }

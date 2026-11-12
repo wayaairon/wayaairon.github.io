@@ -1,45 +1,35 @@
-import { ChevronDown } from 'lucide-react';
-import ReactMarkdown from 'react-markdown';
-import type { CardPageConfig } from '@/types/page';
+import type { CardItem, CardPageConfig } from '@/types/page';
 import SectionLayout from './SectionLayout';
 import styles from './AwardsList.module.css';
 
 export default function AwardsList({ config, embedded }: { config: CardPageConfig; embedded: boolean }) {
+  const awardsByYear = new Map<string, CardItem[]>();
+  for (const item of config.items) {
+    const year = item.date?.match(/\b\d{4}\b/)?.[0] ?? 'Other';
+    const awards = awardsByYear.get(year) ?? [];
+    awards.push(item);
+    awardsByYear.set(year, awards);
+  }
+
   return (
     <SectionLayout config={config} embedded={embedded}>
-      <ol className="min-w-0">
-        {config.items.map((item, index) => {
-          const hasDetails = Boolean(item.content || item.tags?.length);
-          const label = (
-            <>
-              <span className="min-w-0">
-                <strong className="font-semibold text-primary">{item.title}</strong>
-                {item.subtitle && <span className="block text-sm text-neutral-600 sm:inline sm:text-base"><span className="hidden sm:inline">, </span>{item.subtitle}</span>}
-              </span>
-              <span className="flex items-center gap-1.5 pt-0.5 text-sm tabular-nums text-neutral-500">
-                {item.date}
-                {hasDetails && <ChevronDown size={13} aria-hidden="true" className="group-open:rotate-180 motion-safe:transition-transform" />}
-              </span>
-            </>
-          );
-
-          return (
-            <li key={`${item.date}-${item.title}-${index}`} className={styles.entry}>
-              {hasDetails ? (
-                <details className="group">
-                  <summary className={`${styles.row} cursor-pointer rounded-sm outline-offset-2 hover:bg-neutral-50 focus-visible:outline-2 focus-visible:outline-accent`}>
-                    {label}
-                  </summary>
-                  <div className="pb-3 pl-1 pr-5 text-sm leading-relaxed text-neutral-600 [&_a]:underline">
-                    {item.content && <ReactMarkdown>{item.content}</ReactMarkdown>}
-                    {item.tags?.length ? <p className="mt-1">{item.tags.join(' · ')}</p> : null}
+      <div className={styles.groups}>
+        {Array.from(awardsByYear, ([year, awards]) => (
+          <section key={year} aria-label={`Awards in ${year}`}>
+            <h2 className={styles.year}>{year}</h2>
+            <ol>
+              {awards.map((item, index) => (
+                <li key={`${item.title}-${index}`} className={styles.entry}>
+                  <div className={styles.row}>
+                    <strong className="font-semibold text-primary">{item.title}</strong>
+                    {item.subtitle && <span className="block text-sm text-neutral-600 sm:inline sm:text-base"><span className="hidden sm:inline">, </span>{item.subtitle}</span>}
                   </div>
-                </details>
-              ) : <div className={styles.row}>{label}</div>}
-            </li>
-          );
-        })}
-      </ol>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))}
+      </div>
     </SectionLayout>
   );
 }
