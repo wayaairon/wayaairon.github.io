@@ -17,19 +17,12 @@ title = "About"
 [[sections]]
 id = "internships"
 type = "cards"
-title = "Internship Experience"
+title = "💼 Internship Experience"
 
 [[sections.cards]]
 title = "SenseTime"
 subtitle = "Research Institute — Model Training and Engineering Efficiency"
 date = "Sep 2026–Present"
-
-[[sections]]
-id = "featured_publications"
-type = "publications"
-title = "Selected Publications"
-filter = "selected"
-limit = 5
 
 [[sections]]
 id = "mentorship"
@@ -40,5 +33,5 @@ title = "🧑‍🏫 Mentorship"
 [[sections]]
 id = "news"
 type = "list"
-title = "News"
+title = "📰 News"
 source = "news.toml"
