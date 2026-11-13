@@ -136,6 +136,11 @@ export default function Profile({ author, social, features, researchInterests }:
                 <p className="text-neutral-600 mb-2">
                     {author.institution}
                 </p>
+                {author.subtitle && (
+                    <p className="mt-3 text-sm leading-relaxed text-neutral-600">
+                        {author.subtitle}
+                    </p>
+                )}
             </div>
 
             {/* Contact Links */}
