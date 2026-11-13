@@ -14,6 +14,7 @@ export interface SiteConfig {
     name: string;
     title: string;
     subtitle?: string;
+    subtitle_institution?: string;
     institution: string;
     avatar: string;
   };
