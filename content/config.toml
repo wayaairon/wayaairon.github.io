@@ -7,7 +7,8 @@ last_updated = "November 13, 2026"
 [author]
 name = "Wenyu Zhou"
 title = "Undergraduate Student"
-subtitle = "Incoming Ph.D. Student · Fudan University"
+subtitle = "Incoming Ph.D. Student"
+subtitle_institution = "Fudan University"
 institution = "Beihang University"
 avatar = "/profile-photo.jpg"
 
