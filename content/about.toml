@@ -5,7 +5,7 @@ title = "About"
 research_interests = [
   { title = "Model Efficiency", description = "Efficient Training, Inference & Quantization" },
   { title = "World Models", description = "Video Generation, Predictive Representations & Interactive Environments" },
-  { title = "Long-Horizon Agent Learning", description = "Agentic RL, On-Policy Distillation & Multi-Turn Training" }
+  { title = "Agentic Learning", description = "Agentic RL, On-Policy Distillation & Multi-Turn Training" }
 ]
 
 [[sections]]
